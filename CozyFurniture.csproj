@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<AssemblyName>CozyFurniture</AssemblyName>
+		<Description>A furniture for Lethal Company</Description>
+		<Version>1.0.0</Version>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+	
+	<Target Name="NetcodePatch" AfterTargets="PostBuildEvent">
+    <Exec Command="netcode-patch &quot;$(TargetPath)&quot; @(ReferencePathWithRefAssemblies->'&quot;%(Identity)&quot;', ' ')"/>
+</Target>
+
+	<ItemGroup>
+	  <None Remove="SpacePatcher.cs~RF1df520.TMP" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+		<PackageReference Include="BepInEx.Core" Version="5.*" />
+		<PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
+		<PackageReference Include="Lucene.Net" Version="3.0.3" />
+		<PackageReference Include="UnityEngine.Modules" Version="2022.3.9" IncludeAssets="compile" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Assembly-CSharp">
+	    <HintPath>E:\SteamLibrary\steamapps\common\Lethal Company\Lethal Company_Data\Managed\Assembly-CSharp.dll</HintPath>
+	  </Reference>
+	  <Reference Include="LethalLib">
+	    <HintPath>C:\Users\cirko\Downloads\Evaisa-LethalLib-0.13.2\plugins\LethalLib\LethalLib.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Collections">
+	    <HintPath>E:\SteamLibrary\steamapps\common\Lethal Company\Lethal Company_Data\Managed\Unity.Collections.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.Netcode.Runtime">
+	    <HintPath>E:\SteamLibrary\steamapps\common\Lethal Company\Lethal Company_Data\Managed\Unity.Netcode.Runtime.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Unity.TextMeshPro">
+	    <HintPath>E:\SteamLibrary\steamapps\common\Lethal Company\Lethal Company_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.AssetBundleModule">
+	    <HintPath>E:\SteamLibrary\steamapps\common\Lethal Company\Lethal Company_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+</Project>
