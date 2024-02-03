@@ -35,15 +35,9 @@ namespace CozyFurniture
             Utilities.FixMixerGroups(shipObject);
 
 
-            SpawnNetworkManager();
-
-            [ServerRpc]
-            void SpawnNetworkManager()
-            {
-                var dllFolderPath = Path.GetDirectoryName(Info.Location);
-                var assetBundleFilePath = Path.GetFileName(dllFolderPath);
-                networkBundle = AssetBundle.LoadFromFile(assetBundleFilePath);
-            }
+            var dllFolderPath = Path.GetDirectoryName(Info.Location);
+            var assetBundleFilePath = Path.GetFileName(dllFolderPath);
+            networkBundle = AssetBundle.LoadFromFile(assetBundleFilePath);
 
             if (bundle == null)
             {
@@ -84,9 +78,5 @@ namespace CozyFurniture
             }
         }
 
-        void Update()
-        {
-
-        }
     }
 }

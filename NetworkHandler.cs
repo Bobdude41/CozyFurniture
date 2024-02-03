@@ -17,7 +17,7 @@ namespace CozyFurniture
             LevelEvent = null;
 
             if (NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
-                Instance?.gameObject.GetComponent<NetworkObject>().Despawn();
+                Instance.gameObject.GetComponent<NetworkObject>().Despawn();
             Instance = this;
 
             base.OnNetworkSpawn();
